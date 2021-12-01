@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">AshleyTurnbullDhevanLau_COMP304Sec003_Lab5</string>
+    <string name="title_activity_maps">MapsActivity</string>
 </resources>
