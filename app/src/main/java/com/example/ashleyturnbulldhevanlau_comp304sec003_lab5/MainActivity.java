@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         carouselView.setImageClickListener(new ImageClickListener() {
             @Override
             public void onClick(int position) {
+
                 Toast.makeText(MainActivity.this, imageTitle[position], Toast.LENGTH_SHORT).show();
             }
         });
