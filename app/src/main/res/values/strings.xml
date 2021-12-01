@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">AshleyTurnbullDhevanLau_COMP304Sec003_Lab5</string>
     <string name="title_activity_maps">MapsActivity</string>
+    <string name="grub">Grub</string>
+    <string name="the_best_place_to_find_the_food">The best place to find the food</string>
+    <string name="enter_the_restaurant_name">Enter the restaurant name. . .</string>
+    <string name="search">Search</string>
+    <string name="search_nearby_location">Search Nearby Location</string>
 </resources>

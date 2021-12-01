@@ -11,8 +11,8 @@
         android:layout_height="729dp"
         android:backgroundTint="#501313"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/textView2"
@@ -26,7 +26,7 @@
             android:shadowDx="10"
             android:shadowDy="20"
             android:shadowRadius="20"
-            android:text="Grub"
+            android:text="@string/grub"
             android:textColor="#CF4848"
             android:textSize="48sp"
             android:textStyle="bold" />
@@ -39,7 +39,7 @@
             android:shadowColor="#040101"
             android:shadowDy="10"
             android:shadowRadius="10"
-            android:text="The best place to find the food"
+            android:text="@string/the_best_place_to_find_the_food"
             android:textColor="#000000"
             android:textSize="24sp" />
 
@@ -57,14 +57,15 @@
             app:strokeWidth="1dp" />
 
         <EditText
-            android:id="@+id/editTextResterauntName"
+            android:id="@+id/editTextRestaurantName"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:layout_marginLeft="40sp"
             android:layout_marginTop="40sp"
             android:layout_marginRight="40sp"
+            android:autofillHints=""
             android:ems="10"
-            android:hint="Enter the resteraunt name. . ."
+            android:hint="@string/enter_the_restaurant_name"
             android:inputType="textPersonName" />
 
         <Button
@@ -74,7 +75,7 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:onClick="search"
-            android:text="Search" />
+            android:text="@string/search" />
 
         <Button
             android:id="@+id/button3"
@@ -83,6 +84,6 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:onClick="searchNearby"
-            android:text="Search Nearby Location" />
+            android:text="@string/search_nearby_location" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
