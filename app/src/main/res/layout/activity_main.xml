@@ -37,8 +37,6 @@
             android:layout_height="83dp"
             android:gravity="center"
             android:shadowColor="#040101"
-            android:shadowDy="10"
-            android:shadowRadius="10"
             android:text="@string/the_best_place_to_find_the_food"
             android:textColor="#000000"
             android:textSize="24sp" />
@@ -47,8 +45,8 @@
         <com.synnapps.carouselview.CarouselView
             android:id="@+id/carouselview"
             android:layout_width="match_parent"
-            android:layout_height="256dp"
-            android:layout_marginTop="20sp"
+            android:layout_height="380dp"
+            android:layout_marginTop="60sp"
             app:fillColor="#FFFFFFFF"
             app:pageColor="#00000000"
             app:radius="6dp"
@@ -56,34 +54,16 @@
             app:strokeColor="#FF777777"
             app:strokeWidth="1dp" />
 
-        <EditText
-            android:id="@+id/editTextRestaurantName"
+        <TextView
+            android:id="@+id/textView"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_marginLeft="40sp"
-            android:layout_marginTop="40sp"
-            android:layout_marginRight="40sp"
-            android:autofillHints=""
-            android:ems="10"
-            android:hint="@string/enter_the_restaurant_name"
-            android:inputType="textPersonName" />
-
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="111dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_height="83dp"
             android:gravity="center"
-            android:onClick="search"
-            android:text="@string/search" />
+            android:shadowColor="#040101"
+            android:text="Select the type of food. . . "
+            android:textColor="#000000"
+            android:textSize="24sp" />
 
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="116dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:onClick="searchNearby"
-            android:text="@string/search_nearby_location" />
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
