@@ -1,5 +1,7 @@
 package com.example.ashleyturnbulldhevanlau_comp304sec003_lab5;
 
+import android.util.Log;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -40,6 +42,7 @@ public class DownloadUrl {
             inputStream.close();
             httpURLConnection.disconnect();
         }
+        Log.e("Data", ""+Data);
         return Data;
     }
 }

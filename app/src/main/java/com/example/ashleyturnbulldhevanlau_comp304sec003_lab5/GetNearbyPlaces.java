@@ -1,6 +1,7 @@
 package com.example.ashleyturnbulldhevanlau_comp304sec003_lab5;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import androidx.annotation.DoNotInline;
 import androidx.annotation.NonNull;
@@ -36,11 +37,13 @@ public class GetNearbyPlaces extends AsyncTask<Object, String, String> {
         List<HashMap<String,String>> nearbyPlacesList = null;
         DataParser dataParser = new DataParser();
         nearbyPlacesList = dataParser.parse(s);
+        Log.e("OnPostExecute", "Populating Restaurants");
         PopulateRestaurantsList(nearbyPlacesList);
     }
 
     public void PopulateRestaurantsList(List<HashMap<String,String>> nearbyPlacesList){
 
+        Log.e("Num Nearby Places", ""+nearbyPlacesList.size());
         ArrayList<Restaurant> restaurantList = new ArrayList<>();
 
         for(int i=0; i < nearbyPlacesList.size(); i++){
