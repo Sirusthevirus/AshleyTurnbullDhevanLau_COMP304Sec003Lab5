@@ -13,14 +13,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class GetNearbyPlaces extends AsyncTask<Object, String, String> {
+public class GetNearbyPlaces {
 
     private String googlePlaceData, url;
     private ArrayList<Restaurant> restaurantList = new ArrayList<>();
 
-    @NonNull
-    @Override
-    protected String doInBackground(Object... objects){
+    protected void doInBackground(Object... objects){
         url = (String) objects[0];
 
         DownloadUrl downloadUrl = new DownloadUrl();
@@ -29,10 +27,13 @@ public class GetNearbyPlaces extends AsyncTask<Object, String, String> {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return googlePlaceData;
+        List<HashMap<String,String>> nearbyPlacesList = null;
+        DataParser dataParser = new DataParser();
+        nearbyPlacesList = dataParser.parse(googlePlaceData);
+        Log.e("OnPostExecute", "Populating Restaurants");
+        PopulateRestaurantsList(nearbyPlacesList);
     }
 
-    @Override
     protected void onPostExecute(String s) {
         List<HashMap<String,String>> nearbyPlacesList = null;
         DataParser dataParser = new DataParser();
@@ -44,7 +45,7 @@ public class GetNearbyPlaces extends AsyncTask<Object, String, String> {
     public void PopulateRestaurantsList(List<HashMap<String,String>> nearbyPlacesList){
 
         Log.e("Num Nearby Places", ""+nearbyPlacesList.size());
-        ArrayList<Restaurant> restaurantList = new ArrayList<>();
+        //ArrayList<Restaurant> restaurantList = new ArrayList<>();
 
         for(int i=0; i < nearbyPlacesList.size(); i++){
 
@@ -56,6 +57,7 @@ public class GetNearbyPlaces extends AsyncTask<Object, String, String> {
             Double lng = Double.parseDouble(googleNearbyPlace.get("lng"));
 
             Restaurant restaurant = new Restaurant(name, address, lat, lng);
+            Log.e("Adding Restuarant: ", ""+restaurant.getName());
             restaurantList.add(restaurant);
         }
     }

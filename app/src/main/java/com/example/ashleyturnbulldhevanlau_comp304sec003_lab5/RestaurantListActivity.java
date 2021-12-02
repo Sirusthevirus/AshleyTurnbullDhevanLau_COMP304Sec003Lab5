@@ -86,9 +86,8 @@ public class RestaurantListActivity extends AppCompatActivity {
 
         String url = getUrl(latitude, longitude, foodType);
         transferData[0] = url;
-        getNearbyPlaces.execute(transferData);
+        getNearbyPlaces.doInBackground(transferData);
         restaurantArrayList = getNearbyPlaces.GetNearbyRestaurants();
-        Log.e("Restaurant List: ", restaurantArrayList.toString() );
 
         ListAdapter listAdapter = new ListAdapter(RestaurantListActivity.this, restaurantArrayList);
 
@@ -120,8 +119,9 @@ public class RestaurantListActivity extends AppCompatActivity {
     private String getUrl(Double latitude, Double longitude, String foodType){
         StringBuilder googleURL = new StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json?");
         googleURL.append("location=" + latitude.toString() + "," + longitude.toString());
+        googleURL.append("&keyword=" + foodType);
         googleURL.append("&radius=" + radius);
-        googleURL.append("&type=" + foodType);
+        googleURL.append("&type=restaurant");
         googleURL.append("&sensor=true");
         googleURL.append("&key="+API_KEY);
 
