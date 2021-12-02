@@ -22,7 +22,7 @@
             android:textSize="30sp" />
 
         <TextView
-            android:id="@+id/textView_SelectedCuisine"
+            android:id="@+id/TextView_SelectedCuisine"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="1dp"
@@ -34,7 +34,7 @@
             android:id="@+id/ListView_Restaurants"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:listitem="@layout/list_item" />
+            tools:listitem="@layout/list_item"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     };
 
     private String[] imageTitle = new String[] {
-            "Alcohol", "Asian", "Burger", "Ice-Cream", "Mexican", "Pizza", "Street-Food"
+            "Alcohol", "Asian Food", "Burgers", "Ice-Cream", "Mexican Food", "Pizza", "Street Food"
     };
 
     private static final int PERMISSION_REQUEST_LOCATION = 0;
