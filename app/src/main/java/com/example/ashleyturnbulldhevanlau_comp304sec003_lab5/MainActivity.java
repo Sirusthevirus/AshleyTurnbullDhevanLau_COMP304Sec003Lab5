@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     };
 
     private String[] imageTitle = new String[] {
-            "Alcohol", "Asian Food", "Burgers", "Ice-Cream", "Mexican Food", "Pizza", "Street Food"
+            "Alcohol", "Asian-Food", "Burgers", "Ice-Cream", "Mexican-Food", "Pizza", "Street Food"
     };
 
     private static final int PERMISSION_REQUEST_LOCATION = 0;
@@ -67,8 +67,8 @@ public class MainActivity extends AppCompatActivity {
 //        Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 //        Double longitude = location.getLongitude();
 //        Double latitude = location.getLatitude();
-        Double longitude = 43.6532;
-        Double latitude = 79.3832;
+        Double longitude = -79.3832;
+        Double latitude = 43.6534;
         String longit = Double.toString(longitude);
         String lat = Double.toString(latitude);
         intent.putExtra("long", longit);

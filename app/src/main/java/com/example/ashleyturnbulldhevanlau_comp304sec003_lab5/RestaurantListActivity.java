@@ -45,6 +45,7 @@ public class RestaurantListActivity extends AppCompatActivity {
     private static final String TYPE_SEARCH = "/nearbysearch";
     private static final String OUT_JSON = "/json?";
     private static final String LOG_TAG = "ListRest";
+    private int radius = 2000;
 
     //Method 2 Variables
 
@@ -56,25 +57,38 @@ public class RestaurantListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_restaurant_list);
         Intent intent = getIntent();
 
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
         Double longitude = Double.parseDouble(intent.getStringExtra("long"));
         Double latitude = Double.parseDouble(intent.getStringExtra("lat"));
         String foodType = intent.getStringExtra("food");
-        int radius = 1000;
+
 
         listView_Restaurants = (ListView) findViewById(R.id.ListView_Restaurants);
         textView_SelectedCuisine = findViewById(R.id.TextView_SelectedCuisine);
         textView_SelectedCuisine.setText(foodType);
 
-        //Hard coded lists for testing purposes
-        String [] tempNames = {"Burger King", "McDonalds", "KFC"};
-        String [] tempAddresses = {"Your mom's house", "Underground Basement", "K F C dees nuts"};
-
         ArrayList<Restaurant> restaurantArrayList = new ArrayList<>();
+        Object transferData[] = new Object[1];
+        GetNearbyPlaces getNearbyPlaces = new GetNearbyPlaces();
 
-        for(int i = 0; i < tempNames.length; i++){
-            Restaurant restaurant = new Restaurant(tempNames[i], tempAddresses[i]);
-            restaurantArrayList.add(restaurant);
-        }
+        //Hard coded lists for testing purposes ----------------------------
+//        String [] tempNames = {"Burger King", "McDonalds", "KFC"};
+//        String [] tempAddresses = {"Your mom's house", "Underground Basement", "K F C dees nuts"};
+//
+//
+//        for(int i = 0; i < tempNames.length; i++){
+//            Restaurant restaurant = new Restaurant(tempNames[i], tempAddresses[i]);
+//            restaurantArrayList.add(restaurant);
+//        }
+        //-------------------------------------------------------------------
+
+        String url = getUrl(latitude, longitude, foodType);
+        transferData[0] = url;
+        getNearbyPlaces.execute(transferData);
+        restaurantArrayList = getNearbyPlaces.GetNearbyRestaurants();
+        Log.e("Restaurant List: ", restaurantArrayList.toString() );
 
         ListAdapter listAdapter = new ListAdapter(RestaurantListActivity.this, restaurantArrayList);
 
@@ -93,8 +107,7 @@ public class RestaurantListActivity extends AppCompatActivity {
             }
         });
 
-//        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-//        StrictMode.setThreadPolicy(policy);
+
 //
 //        ArrayList<Restaurant> list = search(latitude, longitude, radius, foodType);
 //        Log.e(LOG_TAG, list.toString() );
@@ -102,6 +115,19 @@ public class RestaurantListActivity extends AppCompatActivity {
 //            ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, list);
 //            listView_Restaurants.setAdapter(adapter);
 //        }
+    }
+
+    private String getUrl(Double latitude, Double longitude, String foodType){
+        StringBuilder googleURL = new StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json?");
+        googleURL.append("location=" + latitude.toString() + "," + longitude.toString());
+        googleURL.append("&radius=" + radius);
+        googleURL.append("&type=" + foodType);
+        googleURL.append("&sensor=true");
+        googleURL.append("&key="+API_KEY);
+
+        Log.d("RestaurantListActivity", "url="+googleURL.toString());
+
+        return googleURL.toString();
     }
 
 //    public static ArrayList<Restaurant> search(double lat, double lng, int radius, String foodType){
@@ -115,7 +141,7 @@ public class RestaurantListActivity extends AppCompatActivity {
 //            sb.append(OUT_JSON);
 //            sb.append("location=" + String.valueOf(lat) + "," + String.valueOf(lng));
 //            sb.append("&radius=" + String.valueOf(radius));
-//            sb.append("&type="+ foodType);
+//            sb.append("&type=restaurant");
 //            sb.append("&key=" + API_KEY);
 //
 //            URL url = new URL(sb.toString());
