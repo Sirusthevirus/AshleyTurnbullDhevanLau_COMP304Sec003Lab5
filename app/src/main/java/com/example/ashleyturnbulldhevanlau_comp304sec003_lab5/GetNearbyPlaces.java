@@ -63,7 +63,6 @@ public class GetNearbyPlaces {
     }
 
     public ArrayList<Restaurant> GetNearbyRestaurants(){
-
         return restaurantList;
     }
 }

@@ -93,16 +93,20 @@ public class RestaurantListActivity extends AppCompatActivity {
 
         listView_Restaurants.setAdapter(listAdapter);
         listView_Restaurants.setClickable(true);
+        ArrayList<Restaurant> finalRestaurantArrayList = restaurantArrayList;
         listView_Restaurants.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id){
 
                 //When clicking restaurant find on map
                 Toast.makeText(RestaurantListActivity.this, "Clicked a restaurant", Toast.LENGTH_SHORT).show();
-//                Intent intent = new Intent(RestaurantListActivity.this, MapsActivity.class);
-//                intent.putExtra("lat", restaurantArrayList.get(position).getLatitude());
-//                intent.putExtra("long", restaurantArrayList.get(position).getLongitude());
-//                intent.putExtra("name", restaurantArrayList.get(position).getName());
+                Intent intent = new Intent(RestaurantListActivity.this, MapsActivity.class);
+                String lat = finalRestaurantArrayList.get(position).getLatitude().toString();
+                String lon = finalRestaurantArrayList.get(position).getLongitude().toString();
+                intent.putExtra("lat", lat);
+                intent.putExtra("long", lon);
+                intent.putExtra("name", finalRestaurantArrayList.get(position).getName());
+                startActivity(intent);
             }
         });
 
